@@ -26,13 +26,14 @@
     z-index: -2;
 }
 
+/* Enhanced overlay to remove white line effect */
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+    top: -1px; /* Extend slightly beyond top to eliminate any line */
+    left: -1px; /* Extend slightly beyond left to eliminate any line */
+    width: calc(100% + 2px); /* Cover any potential gap */
+    height: calc(100% + 2px); /* Cover any potential gap */
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
     z-index: -1;
 }
 
@@ -110,6 +111,79 @@
     opacity: 0.8;
 }
 
+/* Footer specific for landing page */
+.hero + footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 2;
+}
+
+/* Portfolio link styling */
+.portfolio-link {
+    margin-top: 1rem;
+}
+
+.portfolio-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    color: #f5f5f5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-name::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #f5f5f5, transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.portfolio-name:hover::before {
+    transform: translateX(100%);
+}
+
+.portfolio-name:hover {
+    color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.portfolio-name .name-text {
+    position: relative;
+}
+
+.portfolio-name i {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.portfolio-name:hover i {
+    opacity: 1;
+    transform: translate(3px, -3px);
+}
+
+/* Footer content layout */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 /* Animations */
 @keyframes fadeInUp {
     from {
@@ -143,6 +217,12 @@
     .hero-subtitle {
         font-size: 1.8rem;
     }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -156,6 +236,15 @@
     
     .hero-tagline {
         font-size: 1.1rem;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .portfolio-name {
+        font-size: 1.3rem;
     }
 }
 
@@ -171,5 +260,10 @@
     .cta-button {
         padding: 0.8rem 2rem;
         font-size: 1rem;
+    }
+    
+    .portfolio-name {
+        font-size: 1.2rem;
+        padding: 0.4rem 0.8rem;
     }
 }
